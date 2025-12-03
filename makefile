@@ -1,12 +1,11 @@
-#TODO
 CC = gcc
 
-#Wvla for checking using VLA. fsanitize=address used to check buffer overflow.
-CFLAGS = -DDEBUG -pedantic -Wvla -fsanitize=address
+# Wvla for checking using VLA. fsanitize=address used to check buffer overflow.
+CFLAGS = -DDEBUG -pedantic -Wvla -fsanitize=address -Wall
 
 TARGET = sound_seg
 
-SRC = sound_seg.c
+SRC = $(wildcard *.c)
 
 $(TARGET): $(SRC)
 	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
@@ -14,5 +13,5 @@ $(TARGET): $(SRC)
 clean:
 	rm -f $(TARGET)
 
-#make sure clean is always executed
-.PHYON: clean
+# make sure clean is always executed
+.PHONY: clean
